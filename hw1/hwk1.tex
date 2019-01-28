@@ -1,0 +1,124 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,latexsym,amsthm,latexsym,amssymb}
+\usepackage{amstext,amsfonts,amsmath,graphicx}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{hyperref}
+
+
+\oddsidemargin = -0.5 in
+\addtolength{\textwidth}{0.8in}
+\addtolength{\textheight}{0.2in}
+
+%% Theorem statements %%
+% THEOREMS -------------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\numberwithin{equation}{section}
+%% MISC DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ignore}[1]{}
+
+\DeclareMathOperator{\shuffle}{shuffle}
+
+\newcommand{\abi}[1]{\textcolor{Red}{#1}}
+\newcommand{\qtrinfo}{CS181 Winter 2019}
+\newcommand{\remove}[1]{}
+\newcommand{\headnote}{
+%\begin{multicols}{2}\small
+\begin{itemize}
+\item Please write your student ID \textbf{and the names of anyone you collaborated with} in the spaces provided and attach this sheet to the front of your solutions. \textbf{Please do not include your name anywhere since the homework will be blind graded.}
+\item An extra credit of \textbf{5\%} will be granted to solutions written using \LaTeX. Here is one place where you can create latex documents for free: \url{https://www.overleaf.com/}. The link also has tutorials to get you started. There are several other editors you can use.
+\item If you are writing solutions by hand, please write your answers in a neat and readable hand-writing.
+\item Always explain your answers. When a proof is requested, you should provide a rigorous proof.
+\item 20\% of the points will be given if your answer is ``I don't know''.
+However, if instead of writing ``I don't know'' you write things that do not make any sense, no points will be given.
+\item The homework is expected to take anywhere between 10 to 16 hours. You are
+advised to start early.
+\item Submit your homework online on the course webpage on Gradescope. 
+\end{itemize}
+%\end{multicols}
+}
+
+\newcommand{\hwhead}[2]{
+    \raggedleft{Student ID: \underline{\hspace{3in}} \\ \medskip
+              Collaborators: \underline{\hspace{3in}} \\ \medskip}
+  \bigskip
+  \begin{center}
+      {\LARGE{\qtrinfo \ -- Problem Set #1}}\\[0.3cm]
+      {\Large{Due #2}}
+  \end{center}
+  \bigskip
+  \raggedright
+  \headnote
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtolength{\topmargin}{-1cm}
+\addtolength{\textheight}{2cm}
+
+
+
+
+
+
+\begin{document}
+\hwhead{1}{Tuesday, January 29, 11:59 pm}
+
+
+\begin{center}
+\fbox{%
+   \parbox{0.8\linewidth}{
+Note: \textit{All questions in the problem sets are challenging; you should not expect to know how to answer any question before trying to come up with innovative ideas and insights to tackle the question. If you want to do some practice problems before trying the questions on the problem set, \textbf{we suggest trying Exercise problems 1.4, 1.5, 1.9, 1.10, and 1.11 from the book. Do not turn in solutions to problems from the book.}}\\
+
+\noindent The machines that we called ``Finite State Machines'' in class are also called "Deterministic Finite Automata (DFA)" and the machines we called
+``Magical Finite State Machines'' in class are also called ``Non-Deterministic Finite Automata (NFA)''.
+   }%
+}
+\end{center}
+
+
+{\small \emph{Hint on all construction problems:  If you want to prove that $L$
+is regular, it suffices to give an NFA for it. On the other hand, if you are
+told to assume that $L'$ is regular, this means that there must exist a DFA
+recognizing $L'$.} }
+
+\newpage
+\begin{enumerate}
+
+\item {\bf (20 points).} Let $L$ be any language and let $L_R$ be the set of reverse strings, i.e.\
+$$L_R = \{ x \mid \exists y \in L \text{ such that } \vert y\vert = \vert x\vert \text{ and } x_1 x_2 \ldots x_n = y_n y_{n-1} \ldots y_1 \}.$$
+
+Show that, if $L$ is regular, so is $L_R$.
+\end{enumerate}
+
+\textbf{Note: The next two problems are quite challenging. However, they are both solvable using the material we covered in class.}
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+     \item {\bf (40 points)}
+Let $L$ be any language and let $L_{\frac{1}{2}-}$ be the set of all the first
+halves of strings in $L$, i.e.\
+$$L_{\frac{1}{2}-} = \{x \mid \exists y\in \Sigma^{*} \text{ such that } \vert x\vert = \vert y\vert \text{ and } xy \in L \}.$$
+Show that if $L$ is a regular language then $L_{\frac{1}{2}-}$ is regular.\\
+\emph{Hint: Think about the way we implemented two machines in ``parallel" by using the Cartesian product. That idea may be useful for this problem.}
+
+\item {\bf (40 points)}
+A DFA $M$ reads its input $x$ once from left to right. What if $M$ can read $x$ again? That is, $M$ reads $x$ from left to right then goes back to the start and reads $x$ from left to right again. Call this a two-pass DFA. Does re-reading the input help a DFA overcome its limited memory? Show that any language accepted by a two-pass DFA is also accepted by a normal DFA. \\~\\
+
+Formally, a two-pass DFA $M_{2p}$ for a language $L \subseteq \Sigma^*$ can be thought of as a normal DFA $M$ over the alphabet $\Sigma \cup \{\$\}$, where $\$$ is a special symbol that represents reaching the end of the first-pass of the input. We say that a two-pass DFA accepts a string $x \in \Sigma^*$ if when viewed as a  normal DFA over alphabet $\Sigma \cup \{\$\}$, it accepts the string $x\$x$. Therefore,
+\[
+L(M_{2p}) = \{x \in \Sigma^* \mid M \text{ accepts } x\$x\}.
+\]\
+In other words, show that for any two-pass DFA $M_{2p}$, $L(M_{2p})$ is regular.
+\\~\\
+Note that a two-pass DFA is trivially as strong as a normal DFA. This is because a two-pass DFA can ``ignore" one reading of the input. \\~\\
+ 
+\emph{Hint: Think about the state that the two-pass DFA is in when it reads the $\$$ symbol.}
+
+
+
+\end{enumerate}
+
+\end{document}
