@@ -1,0 +1,107 @@
+\documentclass[letterpaper, 12pt]{article}
+\usepackage{fullpage,latexsym,amsthm,latexsym,amssymb}
+\usepackage{amstext,amsfonts,amsmath,graphicx}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+
+\oddsidemargin = -0.5 in
+\addtolength{\textwidth}{0.8in}
+\addtolength{\textheight}{0.2in}
+
+%% Theorem statements %%
+% THEOREMS -------------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\numberwithin{equation}{section}
+%% MISC DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ignore}[1]{}
+
+\DeclareMathOperator{\shuffle}{shuffle}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\abs}[1]{\left \vert #1 \right\vert}
+\newcommand{\abi}[1]{\textcolor{Red}{#1}}
+\newcommand{\qtrinfo}{CS181 Winter 2019}
+\newcommand{\remove}[1]{}
+\newcommand{\headnote}{
+%\begin{multicols}{2}\small
+\begin{itemize}
+\item Please write your student ID \textbf{and the names of anyone you collaborated with} in the spaces provided and attach this sheet to the front of your solutions. \textbf{Please do not include your name anywhere since the homework will be blind graded.}
+\item An extra credit of \textbf{5\%} will be granted to solutions written using \LaTeX. Here is one place where you can create \LaTeX documents for free: \url{https://www.overleaf.com/}. The link also has tutorials to get you started. There are several other editors you can use.
+\item If you are writing solutions by hand, please write your answers in a neat and readable hand-writing.
+\item Always explain your answers. When a proof is requested, you should provide a rigorous proof.
+\item If you don't know the answer, write ``I don't know'' along with a clear explanation of what you tried. For example: ``I couldn't figure this out. I think the following is a start, that is correct, but I couldn't figure out what to do next. [[Write down a start to the answer that you are sure makes sense.]] Also, I had the following vague idea, but I couldn't figure out how to make it work. [[Write down vague ideas.]]'' At least 20\% will be given for such an answer.
+
+Note that if you write things that do not make any sense, no points will be given.
+\item The homework is expected to take anywhere between 8 to 14 hours. You are
+advised to start early.
+\item Submit your homework online on Gradescope. 
+\end{itemize}
+%\end{multicols}
+}
+
+\newcommand{\hwhead}[2]{
+	\raggedleft{Student ID: \underline{\hspace{3in}} \\ \medskip
+              Collaborators: \underline{\hspace{3in}} \\ \medskip}
+  \bigskip
+  \begin{center}
+  	{\LARGE{\qtrinfo \ -- Problem Set #1}}\\[0.3cm]
+  	{\Large{Due #2}}
+  \end{center}
+  \bigskip
+  \raggedright
+  \headnote
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtolength{\topmargin}{-1cm}
+\addtolength{\textheight}{2cm}
+
+
+
+
+
+
+\begin{document}
+\hwhead{3}{Monday, February 11, 11:59 pm}
+
+
+\begin{center}
+\fbox{%
+   \parbox{0.8\linewidth}{
+Note: \textit{Suggested practice problems from the book: 2.4 and 2.5. Please, do not turn in solutions to problems from the book.}
+   }
+}
+\end{center}
+
+
+\newpage
+\begin{enumerate}
+\item \textbf{(20 points).} Consider a binary operation $\nabla$ defined as follows: if $A$ and $B$ are two languages,
+then $A \nabla B = \{xy \mid x \in A\text{, }y \in B\text{, and } \abs x = \abs y \}$. Prove that if $A$
+and $B$ are regular languages, then $A \nabla B$ is a context-free language.
+
+
+\item {\bf  (45 points).} This problem explores two related languages. Remember to use the ideas from part (a) in part (b).
+\begin{enumerate}
+	\item \label{first}\textbf{(20 points).} Show that the language
+	\begin{align*}
+		L_1 = \left\{ x\$ y \mid \text{$x, y\in \{0, 1\}^*$ and $x\neq y$} \right\}
+	\end{align*}
+over the alphabet $\Sigma=\{\$, 0, 1\}$ is a context-free language.
+	\item \label{second}\textbf{(25 points).} Show that the language
+\begin{align*}
+	L_2 = \left\{ xy\mid \text{$x, y\in \{0, 1\}^*$, $\abs x = \abs y$, and $x\neq y$}  \right\}
+\end{align*}
+is a context-free language.
+\end{enumerate}
+\emph{Hint: Have non-determinism on your mind.}
+\end{enumerate}
+
+
+\end{document}
