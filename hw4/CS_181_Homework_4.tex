@@ -1,0 +1,127 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage,latexsym,amsthm,latexsym,amssymb}
+\usepackage{amstext,amsfonts,amsmath,graphicx}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{hyperref}
+
+\oddsidemargin = -0.5 in
+\addtolength{\textwidth}{0.8in}
+\addtolength{\textheight}{0.2in}
+
+%% Theorem statements %%
+% THEOREMS -------------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\numberwithin{equation}{section}
+%% MISC DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ignore}[1]{}
+
+\newcommand{\abi}[1]{\textcolor{Red}{#1}}
+\newcommand{\qtrinfo}{CS181 Winter 2019}
+\newcommand{\remove}[1]{}
+\newcommand{\headnote}{
+%\begin{multicols}{2}\small
+\begin{itemize}
+\item Please write your student ID \textbf{and the names of anyone you collaborated with} in the spaces provided and attach this sheet to the front of your solutions. \textbf{Please do not include your name anywhere since the homework will be blind graded.}
+\item An extra credit of \textbf{5\%} will be granted to solutions written using \LaTeX. Here is one place where you can create \LaTeX documents for free: \url{https://www.overleaf.com/}. The link also has tutorials to get you started. There are several other editors you can use.
+\item If you are writing solutions by hand, please write your answers in a neat and readable hand-writing.
+\item Always explain your answers. When a proof is requested, you should provide a rigorous proof.
+\item If you don't know the answer, write ``I don't know'' along with a clear explanation of what you tried. For example: ``I couldn't figure this out. I think the following is a start, that is correct, but I couldn't figure out what to do next. [[Write down a start to the answer that you are sure makes sense.]] Also, I had the following vague idea, but I couldn't figure out how to make it work. [[Write down vague ideas.]]'' At least 20\% will be given for such an answer.
+
+Note that if you write things that do not make any sense, no points will be given.
+\item The homework is expected to take anywhere between 8 to 14 hours. You are
+advised to start early.
+\item Submit your homework online on Gradescope. 
+\end{itemize}
+%\end{multicols}
+}
+
+\newcommand{\hwhead}[2]{
+	\raggedleft{Student ID: \underline{\hspace{3in}} \\ \medskip
+              Collaborators: \underline{\hspace{3in}} \\ \medskip}
+  \bigskip
+  \begin{center}
+  	{\LARGE{\qtrinfo \ -- Problem Set #1}}\\[0.3cm]
+  	{\Large{Due #2}}
+  \end{center}
+  \bigskip
+  \raggedright
+  \headnote
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtolength{\topmargin}{-1cm}
+\addtolength{\textheight}{2cm}
+
+\newcommand{\sbset}{\ensuremath{SUBSET_{TM}}}
+
+\newcommand{\PDA}{\mathsf{PDA}}
+
+\begin{document}
+\hwhead{4}{Tuesday, February 26, 11:59 PM}
+
+\newpage
+\begin{enumerate}
+
+	
+		\item \textbf{(20 points)} Show that the set of three-dimensional coordinates $\{(x,y,z) | x, y, z \in \mathbb{Z}\}$ has size equal to $\mathbb{N}$.
+
+	\item \textbf{(30 points)} Let us define Fast-Rewind Turing Machines (FRTM). They are similar to Turing Machines, except that the head of an FRTM is not allowed to move left one cell at a time.
+	Instead, the head of the FRTM \emph{must} move left only all the way to the left-hand end of the tape (i.e. the first cell). The head of the FRTM can move right one step at a time, just like the usual Turing Machines.
+	The transition function for the FRTM is of the form $\delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{R,FIRST\}$.
+
+	Explain how to convert any Turing Machine into an FRTM.
+	A full proof is not needed, you only need to give an explanation of the intuition behind why your transformation works.
+	
+
+
+\item \textbf{(50 points).} In class, we showed the existence of two kinds of infinities.
+  Let $\Sigma = \{0,1\}$ and $\mathcal{L} = \{L \mid L \subseteq \Sigma^*\}$. We showed that
+  $|\Sigma^*|$ is not the same as $|\mathcal{L}|$.
+
+  We briefly describe the proof below and establish some notation. The proof
+  proceeds by contradiction. Let $(\epsilon, 0, 1, 00, 01, 10, 11, \ldots)$ be
+  a given enumeration of strings in $\Sigma^*$. We assume for the sake of
+  contradiction that there exists some enumeration $(L_1, L_2, L_3, \ldots)$
+  of languages in $\mathcal{L}$. Then we proceed by constructing a language
+  $L^{DIAG} \in \mathcal{L}$ such that $\forall i, L^{DIAG} \not = L_i$ via
+  Cantor's Diagonalization to establish a contradiction.
+  \begin{enumerate}
+    \item \textbf{(10 points)} Call $L_1^{DIAG} = L^{DIAG}$. Construct another language
+    $L_2^{DIAG} \not = L_1^{DIAG}$ via diagonalization which is also not
+    present in the enumeration $(L_1, L_2, L_3, \ldots)$. Thus $L_2^{DIAG}$
+    would have also proved to us that $|\Sigma^*| \not = |\mathcal{L}|$.
+    \item \textbf{(15 points)} Construct an infinite set of languages $\mathcal{L}^{DIAG}
+     = \{L_1^{DIAG}, L_2^{DIAG}, \ldots, L_i^{DIAG}, \ldots \}$ via
+     diagonalization by providing a description of $L_i^{DIAG}$ such that
+     \begin{itemize}
+       \item $ \forall j, j \not = i, L_i^{DIAG} \not = L_j^{DIAG} $.
+       \item $ \forall j, L_i^{DIAG} \not = L_j$.
+       \end{itemize}
+       Formally prove your construction by induction.
+     \item \textbf{(15 points)} Construct one more language
+     $L^{SUPERDIAG}$ such that
+     \begin{itemize}
+       \item $ \forall j, L^{SUPERDIAG} \not = L^{DIAG}_j$ and
+     \item $ \forall j, L^{SUPERDIAG} \not = L_j$
+     \end{itemize}
+     Briefly explain why your language satisfies the above properties.
+     \item \textbf{(10 points)} Construct yet another language $L^{SUPERDIAG}_2$ that is different
+     from $L^{SUPERDIAG}$ satisfying the same properties as part (c). Briefly
+     explain your answer.
+%     Construct another infinite set $\mathcal{L}'_{DIAG}$ that
+%     satisfies conditions of part (b) and $\mathcal{L}'_{DIAG} \cup
+%     \mathcal{L}_{DIAG}$ is empty. Formally prove your construction by induction.
+%     \item Ponder about, you don't need to answer, the existence of a set
+%     $\mathcal{L''}_{DIAG}$ such that for all $L \in \mathcal{L''}_{DIAG}$, for
+%     all $j, L \not = L_j$, and $|\mathcal{L''}_{DIAG}| = \infty_2$.
+  \end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}
